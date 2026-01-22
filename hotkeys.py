@@ -3,7 +3,7 @@ import keyboard
 import time
 import configparser
 import os
-import find_installed_browsers
+import find_browsers
 
 # config = configparser.ConfigParser()
 # config.read('config.ini', encoding='utf-8')
