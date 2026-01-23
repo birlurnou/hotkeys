@@ -88,30 +88,19 @@ def get_installed_browsers():
 
 
 def get_default_browser():
-    """
-    Получает путь к браузеру по умолчанию в Windows
-    """
     try:
-        # Открываем ключ реестра для протокола HTTP
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER,
                             r"Software\Microsoft\Windows\Shell\Associations\UrlAssociations\http\UserChoice") as key:
-            # Получаем значение ProgId
             prog_id, _ = winreg.QueryValueEx(key, "ProgId")
 
-        # Теперь ищем команду для этого ProgId
         with winreg.OpenKey(winreg.HKEY_CLASSES_ROOT,
                             rf"{prog_id}\shell\open\command") as key:
-            # Получаем команду запуска
             command, _ = winreg.QueryValueEx(key, "")
 
-            # Очищаем команду от параметров и кавычек
-            # Пример: "C:\Program Files\...\chrome.exe" --single-argument %1
             path = command.strip('"').split('"')[0] if '"' in command else command.split()[0]
 
-            # Удаляем параметры из пути
             path = path.strip('"')
 
-            # Если путь содержит переменные окружения, раскрываем их
             if '%' in path:
                 for env_var in ['ProgramFiles', 'ProgramFiles(x86)', 'LOCALAPPDATA', 'APPDATA']:
                     if f'%{env_var}%' in path:
@@ -121,13 +110,3 @@ def get_default_browser():
     except Exception as e:
         print(f"Ошибка при получении браузера по умолчанию: {e}")
         return None
-
-
-# Использование
-# browser_path = get_default_browser()
-# print(f"Браузер по умолчанию: {browser_path}")
-#
-# browsers = find_installed_browsers()
-# print("Найдены браузеры:")
-# for name, path in browsers.items():
-#     print(f"  {name}: {path}")
