@@ -2,11 +2,25 @@
 	{	
 		"key": "ctrl + alt + num 1",
 		"type": "url",
-		"url": "https://10.82.113.114:8080/"
+		"url": "https://translate.yandex.ru/translator/",
+		"arg": "chrome"
 	},
 	{	
-		"key": "ctrl + alt + num 5",
+		"key": "ctrl + alt + num 2",
+		"type": "url",
+		"url": "https://www.google.com/?hl=ru",
+		"arg": "msedge"
+	},
+	{	
+		"key": "ctrl + alt + num 3",
 		"type": "program",
-		"url": "D:\\on fast\\winbox64.exe"
+		"url": "C:\\Windows\\explorer.exe",
+		"arg": "D:\\scripts\\py\\actual"
+	},
+	{	
+		"key": "ctrl + alt + num 4",
+		"type": "program",
+		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ""
 	}
 ]
