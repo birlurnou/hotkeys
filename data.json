@@ -1,0 +1,12 @@
+[
+	{	
+		"key": "ctrl + alt + num 1",
+		"type": "url",
+		"url": "https://10.82.113.114:8080/"
+	},
+	{	
+		"key": "ctrl + alt + num 5",
+		"type": "program",
+		"url": "D:\\on fast\\winbox64.exe"
+	}
+]
