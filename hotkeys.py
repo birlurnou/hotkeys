@@ -9,14 +9,17 @@ import find_browsers as fb
 
 формат словаря
 
-"key": "hotkey из модуля keyboard",
+"key": "hotkey",
 "type": "url/program",
 "url": "ссылка на сайт/программу",
 "args": "для url: msedge, chrome, ...; для program: '-windowed', '-fullscreen', ..."
 
-возможные комбинации
+пример data.json в репозитории
 
+hotkey клавиши
 
+(space, enter, ctrl, shift, alt, windows, letters)
+например, shift + space + s
 
 '''
 
