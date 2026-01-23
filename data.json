@@ -1,5 +1,11 @@
 [
 	{	
+		"key": "space + enter + ctrl + shift + alt + windows + letters",
+		"type": "example",
+		"url": "https://example.com",
+		"arg": "для url: msedge, chrome, ...; для program: '-windowed', '-fullscreen', ..."
+	},
+	{	
 		"key": "ctrl + alt + num 1",
 		"type": "url",
 		"url": "https://translate.yandex.ru/translator/",
@@ -22,5 +28,41 @@
 		"type": "program",
 		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
 		"arg": ""
+	},
+	{	
+		"key": "ctrl + alt + num 5",
+		"type": "program",
+		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ""
+	},
+	{	
+		"key": "ctrl + alt + num 6",
+		"type": "program",
+		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ""
+	},
+	{	
+		"key": "ctrl + alt + num 7",
+		"type": "program",
+		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ""
+	},
+	{	
+		"key": "ctrl + alt + num 8",
+		"type": "program",
+		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ""
+	},
+	{	
+		"key": "ctrl + alt + num 9",
+		"type": "program",
+		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ""
+	},
+	{	
+		"key": "ctrl + alt + g",
+		"type": "program",
+		"url": "C:\\Windows\\explorer.exe",
+		"arg": "D:\\scripts\\py\\actual"
 	}
 ]
