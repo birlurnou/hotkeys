@@ -12,7 +12,11 @@ import find_browsers as fb
 "key": "hotkey из модуля keyboard",
 "type": "url/program",
 "url": "ссылка на сайт/программу",
-"args": "указание браузера, например msedge, chrome для url, и указание аргументов для program"
+"args": "для url: msedge, chrome, ...; для program: '-windowed', '-fullscreen', ..."
+
+возможные комбинации
+
+
 
 '''
 
@@ -25,11 +29,11 @@ default_browser_name = default_browser.split('\\')[-1].split('.')[0]
 
 def run(url, type, arg):
 
-    if type == 'url':
+    if type == 'url' or url.startswith('http'):
 
         def open_url():
 
-            if browsers[f'{arg}'] == default_browser:
+            if arg == '' or browsers[f'{arg}'] == default_browser:
                 webbrowser.open(url)
 
             elif default_browser_name == arg:
@@ -46,15 +50,14 @@ def run(url, type, arg):
     if type == 'program':
 
         def open_program():
-            subprocess.Popen([url])
+            subprocess.Popen([url, arg])
         return open_program
 
 
 def main():
 
-    arg = 'chrome'
     for hotkey in hotkeys:
-        keyboard.add_hotkey(hotkey['key'], run(hotkey['url'], hotkey['type'], arg))
+        keyboard.add_hotkey(hotkey['key'], run(hotkey['url'], hotkey['type'], hotkey['arg']))
 
     try:
         keyboard.wait()
