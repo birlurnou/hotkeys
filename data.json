@@ -2,7 +2,7 @@
 	{	
 		"key": "ctrl + alt + num 1",
 		"type": "url",
-		"url": "https://translate.yandex.ru/translator/",
+		"url": ["https://translate.yandex.ru/translator/"],
 		"arg": "chrome"
 	},
 	{	
@@ -14,19 +14,19 @@
 	{	
 		"key": "ctrl + alt + num 3",
 		"type": "program",
-		"url": "C:\\Windows\\explorer.exe",
+		"url": ["C:\\Windows\\explorer.exe"],
 		"arg": "D:\\scripts\\py\\actual"
 	},
 	{	
 		"key": "ctrl + alt + num 4",
 		"type": "program",
-		"url": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"url": ["C:\\Program Files\\Sublime Text\\sublime_text.exe"],
 		"arg": ""
 	},
 	{	
 		"key": "ctrl + alt + g",
 		"type": "program",
-		"url": "C:\\Windows\\explorer.exe",
+		"url": ["C:\\Windows\\explorer.exe"],
 		"arg": "D:\\scripts\\py\\actual"
 	}
 ]
