@@ -31,22 +31,21 @@ default_browser = fb.get_default_browser()
 default_browser_name = default_browser.split('\\')[-1].split('.')[0]
 
 def run(url, type, arg):
-
     if type == 'url' or url.startswith('http'):
 
         def open_url():
 
             if arg == '' or browsers[f'{arg}'] == default_browser:
-                webbrowser.open(url)
+                webbrowser.open(object)
 
             elif default_browser_name == arg:
                 browser = webbrowser.get(browsers[f'{arg}'])
-                browser.open(url)
+                browser.open(object)
 
             elif arg and os.path.exists(browsers[f'{arg}']):
                 print('chrome in browsers')
                 browser = webbrowser.get(browsers[f'{arg}'])
-                browser.open(url)
+                browser.open(object)
 
         return open_url
 
@@ -60,7 +59,19 @@ def run(url, type, arg):
 def main():
 
     for hotkey in hotkeys:
-        keyboard.add_hotkey(hotkey['key'], run(hotkey['url'], hotkey['type'], hotkey['arg']))
+
+        if isinstance(hotkey['url'], str):
+            urls = []
+            urls.append(hotkey['url'])
+        else:
+            urls = hotkey['url']
+
+        for object in urls:
+            key = hotkey['key']
+            url = object
+            type = hotkey['type']
+            arg = hotkey['arg']
+            keyboard.add_hotkey(key, run(url, type, arg))
 
     try:
         keyboard.wait()
