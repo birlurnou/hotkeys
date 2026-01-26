@@ -3,30 +3,52 @@
 		"key": "ctrl + alt + num 1",
 		"type": "url",
 		"url": ["https://translate.yandex.ru/translator/"],
-		"arg": "chrome"
+		"browser": ""
 	},
 	{	
 		"key": "ctrl + alt + num 2",
 		"type": "url",
-		"url": ["https://www.google.com/?hl=ru", "https://www.google.com/?hl=ru"],
-		"arg": "msedge"
+		"url": ["https://google.com", 
+				"https://yandex.ru"],
+		"browser": "msedge"
 	},
 	{	
 		"key": "ctrl + alt + num 3",
+		"type": "url",
+		"url": "https://yandex.ru",
+		"browser": "chrome"
+	}, 
+	{	
+		"key": "ctrl + alt + num 5",
 		"type": "program",
-		"url": ["C:\\Windows\\explorer.exe"],
-		"arg": "D:\\scripts\\py\\actual"
+		"path": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ["D:\\scripts\\py\\actual\\hotkeys\\install_requirements.bat", "D:\\scripts\\py\\actual\\hotkeys\\.gitignore"]
 	},
 	{	
-		"key": "ctrl + alt + num 4",
+		"key": "ctrl + alt + num 6",
 		"type": "program",
-		"url": ["C:\\Program Files\\Sublime Text\\sublime_text.exe"],
+		"path": ["C:\\Program Files\\Git\\git-bash.exe", "C:\\Program Files\\PuTTY\\putty.exe"],
 		"arg": ""
 	},
 	{	
-		"key": "ctrl + alt + g",
+		"key": "ctrl + alt + num 7",
+		"type": "folder",
+		"path": "C:\\"
+	},
+	{	
+		"key": "ctrl + alt + num 8",
+		"type": "folder",
+		"path": ["D:\\scripts\\py\\actual", "D:\\scripts\\py\\other", "D:\\scripts\\py\\data-datasets"]
+	},
+	{	
+		"key": "ctrl + alt + num 9",
+		"type": "folder",
+		"path": ["C:\\", "D:\\"]
+	},
+	{	
+		"key": "ctrl + alt + num 0",
 		"type": "program",
-		"url": ["C:\\Windows\\explorer.exe"],
-		"arg": "D:\\scripts\\py\\actual"
-	}
+		"path": "C:\\Users\\user\\Desktop\\doc+pdf+xls\\Подпись Outlook v2.docx",
+		"arg": "" 
+	}	
 ]
