@@ -36,16 +36,16 @@ def run(url, type, arg):
         def open_url():
 
             if arg == '' or browsers[f'{arg}'] == default_browser:
-                webbrowser.open(object)
+                webbrowser.open(url)
 
             elif default_browser_name == arg:
                 browser = webbrowser.get(browsers[f'{arg}'])
-                browser.open(object)
+                browser.open(url)
 
             elif arg and os.path.exists(browsers[f'{arg}']):
                 print('chrome in browsers')
                 browser = webbrowser.get(browsers[f'{arg}'])
-                browser.open(object)
+                browser.open(url)
 
         return open_url
 
