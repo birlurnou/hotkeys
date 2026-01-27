@@ -16,7 +16,6 @@ default_browser_name = ''
 try:
     # все установленные браузеры
     browsers = fb.get_installed_browsers()
-    # print(browsers)
     # браузер, который выбран по умолчанию
     default_browser = fb.get_default_browser()
     # имя браузера по умолчанию
@@ -24,6 +23,8 @@ try:
 
 except Exception as e:
     print(f'Ошибка при проверке браузеров: {e}')
+
+# print(f'{browsers}\n{default_browser}\n{default_browser_name}\n')
 
 # функция открытия папки/программы/ссылки
 def run(hotkey):
@@ -42,18 +43,21 @@ def run(hotkey):
             for site_url in url:
                 if not hotkey_browser or hotkey_browser.lower() == default_browser_name.lower():
                     webbrowser.open(site_url)
+                    print(f'Открываем {site_url} {f"в {default_browser_name}" if default_browser_name != '' else ''}')
                 else:
                     browser_path = browsers.get(hotkey_browser)
                     if browser_path and os.path.exists(browser_path):
                         try:
                             new_browser = webbrowser.get(browser_path)
                             new_browser.open(site_url)
+                            print(f'Открываем {site_url} в {hotkey_browser}')
                         except Exception as e:
                             print(f'Ошибка при открытии браузера {hotkey_browser}: {e}')
                             webbrowser.open(site_url)
                     else:
                         print(f'Ошибка при получении браузера {hotkey_browser}')
                         webbrowser.open(site_url)
+                        print(f'Открываем {site_url} {f"в {default_browser_name}" if default_browser_name != '' else ''}')
 
         return open_url
 
@@ -74,9 +78,11 @@ def run(hotkey):
                 extension = os.path.splitext(program_path)[1].lower()
                 if extension in ['.docx', '.xls', '.xlsx', '.pdf', '.jpeg', '.jpg', '.png']:
                     os.startfile(program_path)
+                    print(f'Открываем {program_path}')
                 else:
                     full_path = [program_path] + args
                     subprocess.Popen(full_path)
+                    print(f'Открываем {program_path} {f"с аргументами {[arg for arg in args]}" if args != [''] else ''}')
 
         return open_program
 
@@ -90,6 +96,7 @@ def run(hotkey):
                 if os.path.exists(folder_path):
                     # os.startfile(folder_path)
                     subprocess.Popen(f'explorer "{folder_path}"', shell=True)
+                    print(f'Открываем папку {folder_path}')
         return open_folder
 
 # основная функция, которая перебирает значения из json
