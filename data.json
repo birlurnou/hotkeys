@@ -1,54 +1,78 @@
 [
 	{	
-		"key": "ctrl + alt + num 1",
+		"key": "ctrl + alt + shift + space + windows + enter + num 5",
 		"type": "url",
 		"url": ["https://translate.yandex.ru/translator/"],
 		"browser": ""
 	},
 	{	
-		"key": "ctrl + alt + num 2",
-		"type": "url",
-		"url": ["https://google.com", 
-				"https://yandex.ru"],
-		"browser": "msedge"
-	},
-	{	
-		"key": "ctrl + alt + num 3",
-		"type": "url",
-		"url": "https://yandex.ru",
-		"browser": "chrome"
-	}, 
-	{	
-		"key": "ctrl + alt + num 5",
+		"key": "ctrl + alt + shift + space + windows + enter + num 5",
 		"type": "program",
 		"path": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
 		"arg": ["D:\\scripts\\py\\actual\\hotkeys\\install_requirements.bat", "D:\\scripts\\py\\actual\\hotkeys\\.gitignore"]
 	},
 	{	
-		"key": "ctrl + alt + num 6",
-		"type": "program",
-		"path": ["C:\\Program Files\\Git\\git-bash.exe", "C:\\Program Files\\PuTTY\\putty.exe"],
-		"arg": ""
-	},
-	{	
-		"key": "ctrl + alt + num 7",
-		"type": "folder",
-		"path": "C:\\"
-	},
-	{	
-		"key": "ctrl + alt + num 8",
+		"key": "ctrl + alt + shift + space + windows + enter + num 5",
 		"type": "folder",
 		"path": ["D:\\scripts\\py\\actual", "D:\\scripts\\py\\other", "D:\\scripts\\py\\data-datasets"]
 	},
 	{	
-		"key": "ctrl + alt + num 9",
+		"key": "ctrl + alt + g",
 		"type": "folder",
-		"path": ["C:\\", "D:\\"]
+		"path": "G:\\"
 	},
 	{	
-		"key": "ctrl + alt + num 0",
+		"key": "ctrl + alt + m",
+		"type": "folder",
+		"path": "M:\\"
+	},
+	{	
+		"key": "ctrl + alt + d",
+		"type": "folder",
+		"path": "D:\\"
+	},
+	{	
+		"key": "ctrl + alt + c",
+		"type": "folder",
+		"path": "C:\\"
+	},
+	{	
+		"key": "ctrl + alt + p",
+		"type": "folder",
+		"path": "D:\\scripts\\py\\actual"
+	},
+	{	
+		"key": "ctrl + alt + v",
+		"type": "folder",
+		"path": "G:\\Information Systems\\Video Marketing"
+	},
+	{	
+		"key": "ctrl + alt + t",
+		"type": "url",
+		"url": "https://translate.yandex.ru/translator/",
+		"browser": "msedge"
+	},
+	{	
+		"key": "ctrl + alt + z",
+		"type": "url",
+		"url": "https://10.82.113.114:8080/WOListView.do",
+		"browser": ""
+	},
+	{	
+		"key": "ctrl + alt + z",
 		"type": "program",
-		"path": "C:\\Users\\user\\Desktop\\doc+pdf+xls\\Подпись Outlook v2.docx",
-		"arg": "" 
-	}	
+		"path": ["C:\\Program Files (x86)\\Microsoft Office\\Office16\\OUTLOOK.EXE",
+				"\\\\yekhrap01\\APPS$\\TimeControl\\TimeControl.exe",
+				"C:\\Users\\4701120\\AppData\\Local\\Programs\\pro32connect.dashboard.electron\\PRO32 Connect Dashboard.exe",
+				"C:\\Program Files (x86)\\SolarWinds\\DameWare Remote Support\\DNTU.exe",
+				"D:\\scripts\\py\\actual\\dw\\hd.exe"
+				],
+		"arg": ""
+	}, 
+	{	
+		"key": "ctrl + alt + z",
+		"type": "program",
+		"path": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
+		"arg": ["C:\\Users\\4701120\\Desktop\\Создаваемые пользаки.txt"]
+	}
 ]
