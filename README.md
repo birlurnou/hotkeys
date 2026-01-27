@@ -51,7 +51,7 @@ PROGRAM
 {  
   "key": "ctrl + alt + 2",  
   "type": "program",  
-  "url": [""],  
+  "path": [""],  
   "arg": [""]  
 }
 ```
