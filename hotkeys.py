@@ -3,6 +3,8 @@ import webbrowser
 import keyboard
 import os
 import subprocess
+import threading
+import time
 import find_browsers as fb
 
 # чтение данных из json
@@ -101,12 +103,21 @@ def run(hotkey):
 
 # основная функция, которая перебирает значения из json
 def main():
-
     for hotkey in hotkeys:
         keyboard.add_hotkey(hotkey['key'], run(hotkey))
 
+    def wait_for_keys():
+        try:
+            keyboard.wait()
+        except KeyboardInterrupt:
+            pass
+
+    wait_thread = threading.Thread(target=wait_for_keys, daemon=True)
+    wait_thread.start()
+
     try:
-        keyboard.wait()
+        while True:
+            time.sleep(1)
     except KeyboardInterrupt:
         pass
 
