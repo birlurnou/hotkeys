@@ -26,16 +26,12 @@ try:
 except Exception as e:
     print(f'Ошибка при проверке браузеров: {e}')
 
-# print(f'{browsers}\n{default_browser}\n{default_browser_name}\n')
 
 # функция открытия папки/программы/ссылки
 def run(hotkey):
-
     hotkey_type = hotkey.get('type')
-    # print(hotkey)
 
     if hotkey_type == 'url':
-
         def open_url():
             url = hotkey.get('url', [])
             if isinstance(url, str):
@@ -45,7 +41,7 @@ def run(hotkey):
             for site_url in url:
                 if not hotkey_browser or hotkey_browser.lower() == default_browser_name.lower():
                     webbrowser.open(site_url)
-                    print(f'Открываем {site_url} {f"в {default_browser_name}" if default_browser_name != '' else ''}')
+                    print(f'Открываем {site_url} {f"в {default_browser_name}" if default_browser_name != "" else ""}')
                 else:
                     browser_path = browsers.get(hotkey_browser)
                     if browser_path and os.path.exists(browser_path):
@@ -59,12 +55,12 @@ def run(hotkey):
                     else:
                         print(f'Ошибка при получении браузера {hotkey_browser}')
                         webbrowser.open(site_url)
-                        print(f'Открываем {site_url} {f"в {default_browser_name}" if default_browser_name != '' else ''}')
+                        print(
+                            f'Открываем {site_url} {f"в {default_browser_name}" if default_browser_name != "" else ""}')
 
         return open_url
 
     if hotkey_type == 'program':
-
         def open_program():
             path = hotkey.get('path', [])
             args = hotkey.get('arg', [])
@@ -76,7 +72,6 @@ def run(hotkey):
                 if not os.path.exists(program_path):
                     print(f'Файл не найден: {program_path}')
                     continue
-                # if program_path.split('.')[-1] in ['docx', 'xls', 'xlsx', 'pdf', 'jpeg', 'jpg', 'png']:
                 extension = os.path.splitext(program_path)[1].lower()
                 if extension in ['.docx', '.xls', '.xlsx', '.pdf', '.jpeg', '.jpg', '.png']:
                     try:
@@ -88,14 +83,14 @@ def run(hotkey):
                     full_path = [program_path] + args
                     try:
                         subprocess.Popen(full_path)
-                        print(f'Открываем {program_path} {f"с аргументами {[arg for arg in args]}" if args != [''] else ''}')
+                        print(
+                            f'Открываем {program_path} {f"с аргументами {[arg for arg in args]}" if args != [""] else ""}')
                     except Exception as e:
                         print(f'Ошибка при открытии {program_path}:\n{e}')
 
         return open_program
 
     if hotkey_type == 'folder':
-
         def open_folder():
             path = hotkey.get('path', [])
             if isinstance(path, str):
@@ -107,34 +102,21 @@ def run(hotkey):
                         print(f'Открываем папку {folder_path}')
                     except Exception as e:
                         print(f'Ошибка при открытии файла:\n{e}')
+
         return open_folder
 
-# основная функция, которая перебирает значения из json
+
+# основная функция
 def main():
-    def register_hotkeys():
-        try:
-            keyboard.unhook_all()
-            for hotkey in hotkeys:
-                keyboard.add_hotkey(hotkey['key'], run(hotkey))
-            print(f"[{time.strftime('%H:%M:%S')}] Хоткеи перерегистрированы")
-        except Exception as e:
-            print(f"Ошибка при регистрации: {e}")
-
-    register_hotkeys()
-
-    def auto_reload():
-        while True:
-            time.sleep(600)
-            register_hotkeys()
-
-    reload_thread = threading.Thread(target=auto_reload, daemon=True)
-    reload_thread.start()
-
+    for hotkey in hotkeys:
+        keyboard.add_hotkey(hotkey['key'], run(hotkey))
     try:
+        keyboard.wait()
         while True:
             time.sleep(1)
     except KeyboardInterrupt:
         pass
+    
 
 if __name__ == "__main__":
     main()
