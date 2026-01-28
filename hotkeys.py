@@ -111,17 +111,24 @@ def run(hotkey):
 
 # основная функция, которая перебирает значения из json
 def main():
-    for hotkey in hotkeys:
-        keyboard.add_hotkey(hotkey['key'], run(hotkey))
-
-    def wait_for_keys():
+    def register_hotkeys():
         try:
-            keyboard.wait()
-        except KeyboardInterrupt:
-            pass
+            keyboard.unhook_all()
+            for hotkey in hotkeys:
+                keyboard.add_hotkey(hotkey['key'], run(hotkey))
+            print(f"[{time.strftime('%H:%M:%S')}] Хоткеи перерегистрированы")
+        except Exception as e:
+            print(f"Ошибка при регистрации: {e}")
 
-    wait_thread = threading.Thread(target=wait_for_keys, daemon=True)
-    wait_thread.start()
+    register_hotkeys()
+
+    def auto_reload():
+        while True:
+            time.sleep(600)
+            register_hotkeys()
+
+    reload_thread = threading.Thread(target=auto_reload, daemon=True)
+    reload_thread.start()
 
     try:
         while True:
