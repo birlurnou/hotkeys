@@ -4,7 +4,8 @@ import subprocess
 import json
 import webbrowser
 import keyboard
-
+import threading
+import time
 
 def get_installed_browsers():
     browsers = {}
@@ -124,9 +125,9 @@ default_browser_name = ''
 
 try:
     # все установленные браузеры
-    browsers = get_installed_browsers()
+    browsers = fb.get_installed_browsers()
     # браузер, который выбран по умолчанию
-    default_browser = get_default_browser()
+    default_browser = fb.get_default_browser()
     # имя браузера по умолчанию
     default_browser_name = default_browser.split('\\')[-1].split('.')[0]
 
@@ -186,12 +187,18 @@ def run(hotkey):
                 # if program_path.split('.')[-1] in ['docx', 'xls', 'xlsx', 'pdf', 'jpeg', 'jpg', 'png']:
                 extension = os.path.splitext(program_path)[1].lower()
                 if extension in ['.docx', '.xls', '.xlsx', '.pdf', '.jpeg', '.jpg', '.png']:
-                    os.startfile(program_path)
-                    print(f'Открываем {program_path}')
+                    try:
+                        os.startfile(program_path)
+                        print(f'Открываем {program_path}')
+                    except Exception as e:
+                        print(f'Ошибка при открытии {program_path}:\n{e}')
                 else:
                     full_path = [program_path] + args
-                    subprocess.Popen(full_path)
-                    print(f'Открываем {program_path} {f"с аргументами {[arg for arg in args]}" if args != [''] else ''}')
+                    try:
+                        subprocess.Popen(full_path)
+                        print(f'Открываем {program_path} {f"с аргументами {[arg for arg in args]}" if args != [''] else ''}')
+                    except Exception as e:
+                        print(f'Ошибка при открытии {program_path}:\n{e}')
 
         return open_program
 
@@ -203,19 +210,37 @@ def run(hotkey):
                 path = [path]
             for folder_path in path:
                 if os.path.exists(folder_path):
-                    # os.startfile(folder_path)
-                    subprocess.Popen(f'explorer "{folder_path}"', shell=True)
-                    print(f'Открываем папку {folder_path}')
+                    try:
+                        subprocess.Popen(f'explorer "{folder_path}"', shell=True)
+                        print(f'Открываем папку {folder_path}')
+                    except Exception as e:
+                        print(f'Ошибка при открытии файла:\n{e}')
         return open_folder
 
 # основная функция, которая перебирает значения из json
 def main():
+    def register_hotkeys():
+        try:
+            keyboard.unhook_all()
+            for hotkey in hotkeys:
+                keyboard.add_hotkey(hotkey['key'], run(hotkey))
+            print(f"[{time.strftime('%H:%M:%S')}] Хоткеи перерегистрированы")
+        except Exception as e:
+            print(f"Ошибка при регистрации: {e}")
 
-    for hotkey in hotkeys:
-        keyboard.add_hotkey(hotkey['key'], run(hotkey))
+    register_hotkeys()
+
+    def auto_reload():
+        while True:
+            time.sleep(600)
+            register_hotkeys()
+
+    reload_thread = threading.Thread(target=auto_reload, daemon=True)
+    reload_thread.start()
 
     try:
-        keyboard.wait()
+        while True:
+            time.sleep(1)
     except KeyboardInterrupt:
         pass
 
