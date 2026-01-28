@@ -79,12 +79,18 @@ def run(hotkey):
                 # if program_path.split('.')[-1] in ['docx', 'xls', 'xlsx', 'pdf', 'jpeg', 'jpg', 'png']:
                 extension = os.path.splitext(program_path)[1].lower()
                 if extension in ['.docx', '.xls', '.xlsx', '.pdf', '.jpeg', '.jpg', '.png']:
-                    os.startfile(program_path)
-                    print(f'Открываем {program_path}')
+                    try:
+                        os.startfile(program_path)
+                        print(f'Открываем {program_path}')
+                    except Exception as e:
+                        print(f'Ошибка при открытии {program_path}:\n{e}')
                 else:
                     full_path = [program_path] + args
-                    subprocess.Popen(full_path)
-                    print(f'Открываем {program_path} {f"с аргументами {[arg for arg in args]}" if args != [''] else ''}')
+                    try:
+                        subprocess.Popen(full_path)
+                        print(f'Открываем {program_path} {f"с аргументами {[arg for arg in args]}" if args != [''] else ''}')
+                    except Exception as e:
+                        print(f'Ошибка при открытии {program_path}:\n{e}')
 
         return open_program
 
@@ -96,9 +102,11 @@ def run(hotkey):
                 path = [path]
             for folder_path in path:
                 if os.path.exists(folder_path):
-                    # os.startfile(folder_path)
-                    subprocess.Popen(f'explorer "{folder_path}"', shell=True)
-                    print(f'Открываем папку {folder_path}')
+                    try:
+                        subprocess.Popen(f'explorer "{folder_path}"', shell=True)
+                        print(f'Открываем папку {folder_path}')
+                    except Exception as e:
+                        print(f'Ошибка при открытии файла:\n{e}')
         return open_folder
 
 # основная функция, которая перебирает значения из json
