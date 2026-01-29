@@ -1,11 +1,9 @@
 import json
 import webbrowser
-import keyboard
 import os
 import subprocess
-import threading
-import time
 import find_browsers as fb
+from pynput.keyboard import Key, GlobalHotKeys, Listener
 
 # чтение данных из json
 with open('data.json', 'r', encoding='utf-8') as f:
@@ -16,13 +14,9 @@ default_browser = ''
 default_browser_name = ''
 
 try:
-    # все установленные браузеры
     browsers = fb.get_installed_browsers()
-    # браузер, который выбран по умолчанию
     default_browser = fb.get_default_browser()
-    # имя браузера по умолчанию
     default_browser_name = default_browser.split('\\')[-1].split('.')[0]
-
 except Exception as e:
     print(f'Ошибка при проверке браузеров: {e}')
 
@@ -108,15 +102,55 @@ def run(hotkey):
 
 # основная функция
 def main():
+    hotkey_map = {}
+
+    key_conversion = {
+        'ctrl': '<ctrl>',
+        'alt': '<alt>',
+        'shift': '<shift>',
+        'win': '<cmd>',
+        'windows': '<cmd>',
+        'cmd': '<cmd>',
+
+        'esc': '<esc>',
+        'enter': '<enter>',
+        'space': '<space>',
+        'tab': '<tab>',
+        'backspace': '<backspace>',
+        'delete': '<delete>',
+        'insert': '<insert>',
+        'home': '<home>',
+        'end': '<end>',
+        'pageup': '<page_up>',
+        'pagedown': '<page_down>',
+        'up': '<up>',
+        'down': '<down>',
+        'left': '<left>',
+        'right': '<right>',
+
+        'f1': '<f1>', 'f2': '<f2>', 'f3': '<f3>', 'f4': '<f4>',
+        'f5': '<f5>', 'f6': '<f6>', 'f7': '<f7>', 'f8': '<f8>',
+        'f9': '<f9>', 'f10': '<f10>', 'f11': '<f11>', 'f12': '<f12>',
+    }
+
     for hotkey in hotkeys:
-        keyboard.add_hotkey(hotkey['key'], run(hotkey))
-    try:
-        keyboard.wait()
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        pass
-    
+        key_parts = hotkey['key'].replace(' ', '').lower().split('+')
+
+        formatted_parts = []
+        for part in key_parts:
+            if part in key_conversion:
+                formatted_parts.append(key_conversion[part])
+            else:
+                formatted_parts.append(part)
+
+        key_combination = '+'.join(formatted_parts)
+        print(f"Хоткей: {key_combination}")
+
+        hotkey_map[key_combination] = run(hotkey)
+
+    with GlobalHotKeys(hotkey_map) as listener:
+        listener.join()
+
 
 if __name__ == "__main__":
     main()
