@@ -32,7 +32,7 @@
     "esc", "enter", "tab", 
     "space", "backspace", 
     "delete", "insert", 
-    "home", "end", "pageup", "pagedown", 
+    "home", "end", "page_up", "page_down", 
     "up", "down", "left", "right",
     "f1 - f12", 
     "Aa - Zz", 
