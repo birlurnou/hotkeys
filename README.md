@@ -10,12 +10,12 @@
 	> С указанием браузера - в указанном браузере  
 	> Без указания браузера - в браузере по умолчанию
 
-3. Программы и файлы
+2. Программы и файлы
 	> Список программ / одна программа без аргументов  
 	> Одна программа со списком аргументов / с одним аргументом / без аргументов  
 	> Примеры можно посмотреть в файлах data в репозитории
 
-4. Папки
+3. Папки
 
 
 <br>
@@ -24,13 +24,23 @@
 **Какие клавиши можно использовать?**
 
 Сочетание любых клавиш
+```json
+{  
+  "key": [
+    "ctrl", "alt", "shift", 
+    "cmd", "win", "windows", 
+    "esc", "enter", "tab", 
+    "space", "backspace", 
+    "delete", "insert", 
+    "home", "end", "pageup", "pagedown", 
+    "up", "down", "left", "right",
+    "f1 - f12", 
+    "Aa - Zz", 
+    "0 - 9"
+  ]
+}
 
-> ctrl + alt + shift + win или windows + esc + tab + space + enter + backspace
-
-> delete + insert + home + end + page up + page down + up + down + left + right
-
-> num 0 - num 9 + 'num +' + 'num -' + num * + num / + num . + a-z + 0-9
-
+```
 
 <br>
 
@@ -38,7 +48,7 @@
 **Структура хоткеев**
 
 URL
-```
+```json
 {  
   "key": "ctrl + alt + 1",  
   "type": "url",  
@@ -48,7 +58,7 @@ URL
 ```
 
 PROGRAM
-```
+```json
 {  
   "key": "ctrl + alt + 2",  
   "type": "program",  
@@ -58,7 +68,7 @@ PROGRAM
 ```
 
 FOLDER
-```
+```json
 {  
   "key": "ctrl + alt + 3",  
   "type": "folder",  
