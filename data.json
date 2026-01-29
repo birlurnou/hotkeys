@@ -53,7 +53,7 @@
 		"arg": ""
 	}, 
 	{	
-		"key": "ctrl + alt + z",
+		"key": "ctrl + alt + s",
 		"type": "program",
 		"path": "C:\\Program Files\\Sublime Text\\sublime_text.exe",
 		"arg": ["C:\\Users\\4701120\\Desktop\\Создаваемые пользаки.txt"]
